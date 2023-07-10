@@ -1,4 +1,10 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs'
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  writeFileSync
+} from 'fs'
 
 interface Coffee {
   roaster: string
@@ -17,6 +23,7 @@ const sourceHTML = readFileSync('./index.template.html', 'utf8')
 const newHTML = sourceHTML.replace('<!-- coffee -->', html)
 ensureDirExists('./dist')
 writeFileSync('./dist/index.html', newHTML)
+copyFileSync('./style.css', './dist/style.css')
 
 function buidlHTML(coffees: Coffee[]) {
   const thsHTML = `
