@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'SF Mono', Menlo, Monaco, monospace;
+}
+
+:root {
+  font-size: 12px;
+  --text-color: rgb(14, 14, 14);
+}
+
+body {
+  min-width: 680px;
+}
+
+main {
+  margin: 0 2.4rem;
+}
+
+#coffees {
+  margin: 6rem 0 3rem;
+  width: 100%;
+}
+#coffees th {
+  text-align: left;
+  user-select: none;
+}
+
+.entry {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0px 0.4rem;
+
+  border-bottom: 1px solid var(--text-color);
+
+  padding-top: 0.3rem;
+  padding-bottom: 0.2rem;
+}
+
+.entry > *:not(:last-child) {
+  flex-basis: 10rem;
+  flex-shrink: 0;
+}
+
+/* nav */
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  border-top: 1px solid var(--text-color);
+}
+
+#nav-left {
+  border-right: 1px solid var(--text-color);
+  border-bottom: 1px solid var(--text-color);
+  padding: 0.4rem 0.6rem;
+}
+
+#nav-right {
+  flex-basis: 12%;
+
+  border-bottom: 1px solid var(--text-color);
+  padding: 0.4rem 0.6rem;
+}

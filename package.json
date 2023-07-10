@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "npx tsx process.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.1",
+    "tsx": "^3.12.7"
+  }
+}
