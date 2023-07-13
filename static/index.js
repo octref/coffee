@@ -7,46 +7,46 @@ async function go() {
   overrideFormSubmit()
 
   const code = getParam(window.location.href, 'code')
-  if (code) {
+  if (!code) {
+    if (
+      localStorage.getItem('login') === OWNER_ID &&
+      localStorage.getItem('token')
+    ) {
+      setLoggedIn()
+      return
+    }
+  } else {
     const newURL = removeParam(window.location.href, 'code')
     history.replaceState({}, '', newURL)
-  }
 
-  if (
-    localStorage.getItem('login') === OWNER_ID &&
-    localStorage.getItem('token')
-  ) {
-    setLoginUI()
-    return
-  }
+    const getTokenResponse = await fetch(WORKER_URL, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({ code })
+    })
 
-  const getTokenResponse = await fetch(WORKER_URL, {
-    method: 'POST',
-    mode: 'cors',
-    headers: {
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify({ code })
-  })
+    const tokenResult = await getTokenResponse.json()
 
-  const result = await getTokenResponse.json()
-
-  if (result.error) {
-    return console.error(JSON.stringify(result, null, 2))
-  }
-
-  const getUserResponse = await fetch('https://api.github.com/user', {
-    headers: {
-      accept: 'application/vnd.github.v3+json',
-      authorization: `token ${result.token}`
+    if (tokenResult.error) {
+      return console.error(JSON.stringify(tokenResult, null, 2))
     }
-  })
-  const { login } = await getUserResponse.json()
 
-  if (login === OWNER_ID && result.token) {
-    localStorage.setItem('token', result.token)
-    localStorage.setItem('login', login)
-    setLoginUI()
+    const getUserResponse = await fetch('https://api.github.com/user', {
+      headers: {
+        accept: 'application/vnd.github.v3+json',
+        authorization: `token ${tokenResult.token}`
+      }
+    })
+    const { login } = await getUserResponse.json()
+
+    if (login === OWNER_ID && tokenResult.token) {
+      localStorage.setItem('token', tokenResult.token)
+      localStorage.setItem('login', login)
+      setLoggedIn()
+    }
   }
 }
 
@@ -71,8 +71,6 @@ function overrideFormSubmit() {
       return alert(`you aren't pine. stop it`)
     }
 
-    console.log(jsonData)
-
     const dispatchResponse = await fetch(
       'https://api.github.com/repos/octref/coffee/dispatches',
       {
@@ -94,7 +92,7 @@ function overrideFormSubmit() {
   })
 }
 
-function setLoginUI() {
+function setLoggedIn() {
   const $login = document.querySelector('#login')
   $login.dataset.state = 'logged-in'
 }
