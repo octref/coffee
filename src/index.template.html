@@ -9,6 +9,12 @@
     <meta name="description" content="pine's coffee log" />
     <title>coffee log | pine</title>
     <link rel="stylesheet" href="./style.css" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#ed664d" />
   </head>
 
   <body>
@@ -21,7 +27,9 @@
 
     <div id="login" data-state="logged-out">
       <div id="login-btn">
-        <a href="https://github-oauth-login.octref.workers.dev">login</a>
+        <a href="https://github-oauth-login.octref.workers.dev"
+          >login as pine<span>(don't bother if you aren't)</span></a
+        >
       </div>
       <form id="coffee-form">
         <div class="input-group">
@@ -90,7 +98,7 @@
         </div>
 
         <div id="coffee-submit">
-          <input type="submit" value="submit" />
+          <input type="submit" value="add coffee" />
         </div>
       </form>
     </div>

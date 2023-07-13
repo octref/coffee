@@ -3,6 +3,7 @@ import {
   existsSync,
   mkdirSync,
   readFileSync,
+  readdirSync,
   writeFileSync
 } from 'fs'
 
@@ -37,14 +38,10 @@ const sourceHTML = readFileSync(
 const newHTML = sourceHTML.replace('<!-- coffee -->', html)
 ensureDirExists(resolveRootPath('./dist'))
 writeFileSync(resolveRootPath('./dist/index.html'), newHTML)
-copyFileSync(
-  resolveRootPath('./src/style.css'),
-  resolveRootPath('./dist/style.css')
-)
-copyFileSync(
-  resolveRootPath('./src/index.js'),
-  resolveRootPath('./dist/index.js')
-)
+
+readdirSync(resolveRootPath('./static')).forEach((f) => {
+  copyFileSync(resolveRootPath(`./static/${f}`), resolveRootPath(`./dist/${f}`))
+})
 
 function buidlHTML(coffees: Coffee[]) {
   sortCoffeeByDate(coffees)
