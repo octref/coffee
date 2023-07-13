@@ -4,7 +4,7 @@ a simple log of my coffee consumption
 
 # how this works
 
-visitor: they can view the coffee log
+visitor: can view the coffee log
 
 pine: can add a coffee to the log
   - login through GitHub OAuth
