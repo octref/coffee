@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "build": "npx tsx scripts/process.ts"
+    "build": "npx tsx scripts/build.ts"
   },
   "devDependencies": {
     "@types/node": "^20.4.1",
