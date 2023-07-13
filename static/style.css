@@ -1,21 +1,39 @@
 :root {
   font-size: 12px;
 
+  --bg: rgb(242, 242, 242);
+  --fg: rgb(14, 14, 14);
+
   --text-color: rgb(14, 14, 14);
   --text-fade-color: rgba(14, 14, 14, 0.25);
 
   --side-clear: 2.4rem;
 }
 
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: rgb(14, 14, 14);
+    --fg: rgb(242, 242, 242);
+
+    --text-color: rgb(242, 242, 242);
+    --text-fade-color: rgba(242, 242, 242, 0.25);
+  }
+}
+*/
+
 * {
   margin: 0;
   padding: 0;
   font-family: 'SF Mono', Menlo, Monaco, monospace;
+
+  color: var(--fg);
+  background-color: var(--bg);
 }
 
 ::selection {
-  background-color: black;
-  color: white;
+  background-color: var(--fg);
+  color: var(--bg);
 }
 
 body {
@@ -117,7 +135,8 @@ nav {
   border-left: 1px dashed var(--text-fade-color);
   border-right: 1px dashed var(--text-fade-color);
 }
-#login-btn a {
+#login-btn a,
+#login-btn a small {
   transition: color 0.3s;
   color: var(--text-fade-color);
 }
@@ -125,7 +144,8 @@ nav {
   border-left: 1px solid var(--text-color);
   border-right: 1px solid var(--text-color);
 }
-#login-btn:hover a {
+#login-btn:hover a,
+#login-btn:hover a small {
   color: var(--text-color);
 }
 
@@ -221,14 +241,14 @@ input[type='submit'] {
   flex-basis: 25%;
   margin-top: 1rem;
   cursor: pointer;
-  background-color: white;
+  background-color: var(--bg);
 
   transition: color 0.3s, border 0.3s;
   color: var(--text-fade-color);
   border-left: 1px dashed var(--text-fade-color);
   border-right: 1px dashed var(--text-fade-color);
-  border-top: 1px solid white;
-  border-bottom: 1px solid white;
+  border-top: 1px solid var(--bg);
+  border-bottom: 1px solid var(--bg);
 }
 
 input[type='submit']:hover {
