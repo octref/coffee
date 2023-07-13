@@ -1,5 +1,6 @@
 :root {
   font-size: 12px;
+
   --text-color: rgb(14, 14, 14);
   --text-fade-color: rgba(14, 14, 14, 0.25);
 
@@ -12,6 +13,11 @@
   font-family: 'SF Mono', Menlo, Monaco, monospace;
 }
 
+::selection {
+  background-color: black;
+  color: white;
+}
+
 body {
   min-width: 680px;
   min-height: 100vh;
@@ -20,10 +26,13 @@ body {
 }
 
 main {
-  margin: 0 2.4rem;
+  padding-left: var(--side-clear);
+  padding-right: var(--side-clear);
 
   flex-grow: 2;
 }
+
+/* coffees */
 
 #coffees {
   margin: 6rem 0 3rem;
@@ -79,39 +88,62 @@ nav {
   justify-content: space-around;
 
   padding-top: 1rem;
-  margin: 0rem 2.4rem 1rem;
+  margin-bottom: 1rem;
+  padding-left: var(--side-clear);
+  padding-right: var(--side-clear);
   border-top: 1px solid var(--text-color);
 }
 
 #login-btn {
-  opacity: 0;
   flex-basis: 25%;
-  transition: opacity 0.3s;
   cursor: pointer;
   padding: 0.4rem 0.6rem;
-}
-
-#login:hover #login-btn {
-  opacity: 1;
 }
 
 #login-btn a {
   display: block;
   text-align: center;
   text-decoration: none;
-  color: var(--text-fade-color);
-  transition: color 0.3s, background-color 0.3s;
-}
-#login-btn:hover a {
-  color: white;
-  background-color: var(--text-color);
 }
 
-div[data-state='logged-in'] #login-btn {
+#login-btn {
+  transition: color 0.3s, border 0.3s;
+  border-left: 1px dashed var(--text-fade-color);
+  border-right: 1px dashed var(--text-fade-color);
+}
+#login-btn a {
+  transition: color 0.3s;
+  color: var(--text-fade-color);
+}
+#login-btn:hover {
+  border-left: 1px solid var(--text-color);
+  border-right: 1px solid var(--text-color);
+}
+#login-btn:hover a {
+  color: var(--text-color);
+}
+
+#login-btn {
   display: none;
 }
-div[data-state='logged-out'] #coffee-form {
+#login[data-state='logged-in'] #login-btn {
   display: none;
+}
+#login[data-state='logged-out']:hover #login-btn {
+  display: block;
+}
+
+#coffee-form {
+  display: none;
+}
+#login[data-state='logged-out'] #coffee-form {
+  display: none;
+}
+#login[data-state='logged-in']:hover #coffee-form {
+  display: flex;
+}
+#coffee-form:has(input:focus) {
+  display: flex;
 }
 
 /* coffee form */
@@ -119,6 +151,7 @@ div[data-state='logged-out'] #coffee-form {
 input {
   outline: none;
   border: 0;
+  border-radius: 0;
 
   font-size: 12px;
 
@@ -140,7 +173,6 @@ label {
 }
 
 #coffee-form {
-  display: flex;
   flex-flow: row wrap;
   width: 100%;
   gap: 0.4rem 0;
