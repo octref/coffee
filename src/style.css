@@ -1,0 +1,200 @@
+:root {
+  font-size: 12px;
+  --text-color: rgb(14, 14, 14);
+  --text-fade-color: rgba(14, 14, 14, 0.25);
+
+  --side-clear: 2.4rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'SF Mono', Menlo, Monaco, monospace;
+}
+
+body {
+  min-width: 680px;
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+main {
+  margin: 0 2.4rem;
+
+  flex-grow: 2;
+}
+
+#coffees {
+  margin: 6rem 0 3rem;
+  width: 100%;
+}
+#coffees th {
+  text-align: left;
+  user-select: none;
+}
+
+.entry {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0px 0.4rem;
+
+  border-bottom: 1px solid var(--text-color);
+
+  padding-top: 0.3rem;
+  padding-bottom: 0.2rem;
+}
+
+.entry > *:not(:last-child) {
+  flex-basis: 10rem;
+  flex-shrink: 0;
+}
+
+/* nav */
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  border-top: 1px solid var(--text-color);
+}
+
+#nav-left {
+  border-right: 1px solid var(--text-color);
+  border-bottom: 1px solid var(--text-color);
+  padding: 0.4rem 0.6rem;
+}
+
+#nav-right {
+  flex-basis: 12%;
+
+  border-bottom: 1px solid var(--text-color);
+  padding: 0.4rem 0.6rem;
+}
+
+/* login */
+
+#login {
+  display: flex;
+  justify-content: space-around;
+
+  padding-top: 1rem;
+  margin: 0rem 2.4rem 1rem;
+  border-top: 1px solid var(--text-color);
+}
+
+#login-btn {
+  opacity: 0;
+  flex-basis: 25%;
+  transition: opacity 0.3s;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+}
+
+#login:hover #login-btn {
+  opacity: 1;
+}
+
+#login-btn a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text-fade-color);
+  transition: color 0.3s, background-color 0.3s;
+}
+#login-btn:hover a {
+  color: white;
+  background-color: var(--text-color);
+}
+
+div[data-state='logged-in'] #login-btn {
+  display: none;
+}
+div[data-state='logged-out'] #coffee-form {
+  display: none;
+}
+
+/* coffee form */
+
+input {
+  outline: none;
+  border: 0;
+
+  font-size: 12px;
+
+  transition: color 0.3s, border 0.3s;
+  color: var(--text-fade-color);
+  border-bottom: 1px solid var(--text-fade-color);
+}
+input:hover,
+input:focus {
+  color: var(--text-color);
+  border-bottom: 1px solid var(--text-color);
+}
+label {
+  transition: color 0.3s;
+}
+.input-container:has(> input:hover) > label,
+.input-container:has(> input:focus) > label {
+  color: var(--text-color);
+}
+
+#coffee-form {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  gap: 0.4rem 0;
+  margin: 1rem 0;
+  color: var(--text-fade-color);
+}
+
+.input-group {
+  flex-basis: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.input-container {
+  display: flex;
+  flex-basis: 25%;
+  flex-flow: column nowrap;
+}
+.input-container.flex-50 {
+  flex-basis: 50%;
+}
+.input-container.flex-100 {
+  flex-basis: 100%;
+}
+
+#coffee-form > div:has(> input:focus),
+#coffee-form > div:has(> input:hover) {
+  color: var(--text-color);
+}
+
+#coffee-submit {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row nowrap;
+  flex-basis: 100%;
+  border: 0;
+}
+
+input[type='submit'] {
+  flex-basis: 25%;
+  margin-top: 1rem;
+  cursor: pointer;
+  background-color: white;
+
+  transition: color 0.3s, border 0.3s;
+  color: var(--text-fade-color);
+  border-left: 1px dashed var(--text-fade-color);
+  border-right: 1px dashed var(--text-fade-color);
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+input[type='submit']:hover {
+  color: var(--text-color);
+  border-left: 1px solid var(--text-color);
+  border-right: 1px solid var(--text-color);
+}

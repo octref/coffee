@@ -1,0 +1,69 @@
+name: add-coffee
+
+on:
+  repository_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # setup repo/node/pnpm
+
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: install jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
+      - name: install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: install pnpm
+        uses: pnpm/action-setup@v2
+        id: pnpm-install
+        with:
+          version: 7
+          run_install: false
+
+      - name: get pnpm store directory
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: install dependencies
+        run: pnpm install
+
+      # setup repo/node/pnpm end
+
+      - name: set environment variable
+        run: |
+          echo "PAYLOAD=$(echo '${{ toJson(github.event.client_payload) }}' | jq -c .)" >> $GITHUB_ENV
+
+      - name: process payload data
+        run: npx tsx scripts/addCoffee.ts '${{ env.PAYLOAD }}'
+
+      - name: commit
+        run: |
+          if [[ `git status --porcelain` ]]; then
+            git config user.name "Pine Wu"
+            git config user.email octref@gmail.com
+            git status
+            git add -A
+            git commit -m "update"
+            git push
+          else
+            echo "no changes"
+          fi

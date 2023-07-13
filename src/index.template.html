@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,user-scalable=no"
+    />
+    <meta name="description" content="pine's coffee log" />
+    <title>coffee log | pine</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <nav>
+      <div id="nav-left">coffee log</div>
+      <div id="nav-right">pine</div>
+    </nav>
+
+    <!-- coffee -->
+
+    <div id="login" data-state="logged-out">
+      <div id="login-btn">
+        <a href="https://github-oauth-login.octref.workers.dev">login</a>
+      </div>
+      <form id="coffee-form">
+        <div class="input-group">
+          <div class="input-container">
+            <input
+              type="text"
+              id="roaster"
+              name="roaster"
+              autocomplete="off"
+              required
+            />
+            <label for="roaster">roaster</label>
+          </div>
+
+          <div class="input-container">
+            <input
+              type="text"
+              id="coffee"
+              name="coffee"
+              autocomplete="off"
+              required
+            />
+            <label for="coffee">coffee</label>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-container">
+            <input
+              type="text"
+              id="region"
+              name="region"
+              autocomplete="off"
+              required
+            />
+            <label for="region">region</label>
+          </div>
+
+          <div class="input-container">
+            <input
+              type="text"
+              id="altitude"
+              name="altitude"
+              autocomplete="off"
+              required
+            />
+            <label for="altitude">altitude</label>
+          </div>
+
+          <div class="input-container flex-50">
+            <input
+              type="text"
+              id="varietal"
+              name="varietal"
+              autocomplete="off"
+              required
+            />
+            <label for="varietal">varietal</label>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-container">
+            <input
+              type="text"
+              id="roast"
+              name="roast"
+              autocomplete="off"
+              required
+            />
+            <label for="roast">roast</label>
+          </div>
+
+          <div class="input-container">
+            <input
+              type="text"
+              id="roasted"
+              name="roasted"
+              autocomplete="off"
+              required
+            />
+            <label for="roasted">roasted</label>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-container flex-50">
+            <input
+              type="text"
+              id="process"
+              name="process"
+              autocomplete="off"
+              required
+            />
+            <label for="process">process</label>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="input-container flex-100">
+            <input
+              type="text"
+              id="notes"
+              name="notes"
+              autocomplete="off"
+              required
+            />
+            <label for="notes">notes</label>
+          </div>
+        </div>
+
+        <div id="coffee-submit">
+          <input type="submit" value="submit" />
+        </div>
+      </form>
+    </div>
+
+    <script src="./index.js"></script>
+  </body>
+</html>

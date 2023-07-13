@@ -3,37 +3,43 @@
     "roaster": "sey",
     "coffee": "kore",
     "region": "ethiopian",
-    "process": "washed",
     "varietal": "landrace",
+    "altitude": "1900 masl",
+    "roast": "light",
     "roasted": "06/19/23",
+    "process": "washed",
     "notes": "white florals, tropical fruit, sparkling limeade acidity"
   },
   {
     "roaster": "cat & cloud",
     "coffee": "the answer",
     "region": "ethiopian",
-    "process": "washed, natural",
     "varietal": "caturra, yellow bourbon, heirloom",
+    "altitude": "1100-1900 masl",
+    "roast": "medium",
     "roasted": "05/30/23",
+    "process": "washed, natural",
     "notes": "caramel, berries, chocolate"
   },
-
   {
     "roaster": "corvus",
     "coffee": "cristales wush wush",
     "region": "quindio, colombia",
-    "process": "pre-fermentation, carbonic maceration, natural",
     "varietal": "wush wush",
+    "roast": "light",
     "roasted": "05/23/23",
+    "process": "pre-fermentation, carbonic maceration, natural",
     "notes": "peach blossom, tart cherry, punchy orange"
   },
   {
     "roaster": "black velvet",
     "coffee": "guatemala",
     "region": "guatemala",
-    "process": "washed",
+    "altitude": "1350 masl",
     "varietal": "typica, bourbon, caturra, catuai",
+    "roast": "medium",
     "roasted": "06/14/23",
+    "process": "washed",
     "notes": "medium acidity, juicy body, grapefruit, chocolate, brown sugar with a sweet finish"
   }
 ]
