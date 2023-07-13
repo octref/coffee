@@ -82,11 +82,15 @@ function overrideFormSubmit() {
           authorization: `token ${localStorage.getItem('token')}`
         },
         body: JSON.stringify({
-          event_type: 'log',
+          event_type: 'add-coffee',
           client_payload: jsonData
         })
       }
     )
+
+    if (dispatchResponse.ok) {
+      console.log('coffee added!')
+    }
   })
 }
 
