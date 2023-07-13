@@ -54,12 +54,17 @@ function buidlHTML(coffees: Coffee[]) {
     ['notes']
   ]
 
+  const DIVIDER_HTML = '<span class="divider">-</span>'
+  const UNKNOWN_PROP_HTML = '<span class="unknown">/</span>'
+
   let thsHTML = `<tr class="entry">`
   fields.forEach((f) => {
     if (f.length === 1) {
       thsHTML += `<th class="${f[0]}">${f[0]}</th>`
     } else {
-      thsHTML += `<th class="${f.join('-n-')}">${f.join('<br />–<br />')}</th>`
+      thsHTML += `<th class="${f.join('-n-')}">${f.join(
+        `<br />${DIVIDER_HTML}<br />`
+      )}</th>`
     }
   })
   thsHTML += `</tr>`
@@ -69,11 +74,11 @@ function buidlHTML(coffees: Coffee[]) {
 
     fields.forEach((f) => {
       if (f.length === 1) {
-        html += `<td class="${f[0]}">${c[f[0]] || '/'}</td>`
+        html += `<td class="${f[0]}">${c[f[0]] || UNKNOWN_PROP_HTML}</td>`
       } else {
         html += `<td class="${f.join('-n-')}">${f
-          .map((p) => c[p] || '/')
-          .join('<br />–<br />')}</td>`
+          .map((p) => c[p] || UNKNOWN_PROP_HTML)
+          .join(`<br />${DIVIDER_HTML}<br />`)}</td>`
       }
     })
 
