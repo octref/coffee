@@ -26,9 +26,17 @@
   margin: 0;
   padding: 0;
   font-family: 'SF Mono', Menlo, Monaco, monospace;
+  box-sizing: border-box;
 
   color: var(--fg);
   background-color: var(--bg);
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
 
 ::selection {
@@ -76,6 +84,11 @@ main {
 
   padding-top: 0.3rem;
   padding-bottom: 0.2rem;
+}
+
+.entry th,
+.entry td {
+  padding-right: 1rem;
 }
 
 .entry > *:not(:last-child) {
