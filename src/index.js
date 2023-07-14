@@ -90,6 +90,7 @@ function overrideFormSubmit() {
 
     if (dispatchResponse.ok) {
       clearForm()
+      coffeeAdded()
     }
   })
 }
@@ -97,6 +98,16 @@ function overrideFormSubmit() {
 function setLoggedIn() {
   const $login = document.querySelector('#login')
   $login.dataset.state = 'logged-in'
+}
+
+function coffeeAdded() {
+  const $submit = document.querySelector('#coffee-submit input')
+  const submitValue = $submit.value
+  $submit.value = 'coffee added!'
+
+  setTimeout(() => {
+    $submit.value = submitValue
+  }, 1000)
 }
 
 function clearForm() {
