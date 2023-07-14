@@ -87,7 +87,7 @@ function overrideFormSubmit() {
     )
 
     if (dispatchResponse.ok) {
-      console.log('coffee added!')
+      clearForm()
     }
   })
 }
@@ -95,6 +95,11 @@ function overrideFormSubmit() {
 function setLoggedIn() {
   const $login = document.querySelector('#login')
   $login.dataset.state = 'logged-in'
+}
+
+function clearForm() {
+  const $form = document.querySelector('#coffee-form')
+  $form.reset()
 }
 
 function getParam(url, param) {
