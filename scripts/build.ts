@@ -87,7 +87,7 @@ function buildCoffeeHTML(coffees: Coffee[]) {
   const UNKNOWN_PROP_HTML = '<span class="unknown">/</span>'
 
   let thsHTML = `<tr class="entry">`
-  fields.forEach((f) => {
+  fields.forEach((f, fi) => {
     if (f.length === 1) {
       thsHTML += `<th class="${f[0]}">${f[0]}</th>`
     } else {
@@ -95,19 +95,25 @@ function buildCoffeeHTML(coffees: Coffee[]) {
         `<br />${DIVIDER_HTML}<br />`
       )}</th>`
     }
+    if ((fi + 1) % 3 === 0) {
+      thsHTML += `<th class="flex-divider"></th>`
+    }
   })
   thsHTML += `</tr>`
 
   const entryHTMLs = coffees.map((c) => {
     let html = '<tr class="entry">'
 
-    fields.forEach((f) => {
+    fields.forEach((f, fi) => {
       if (f.length === 1) {
         html += `<td class="${f[0]}">${c[f[0]] || UNKNOWN_PROP_HTML}</td>`
       } else {
         html += `<td class="${f.join('-n-')}">${f
           .map((p) => c[p] || UNKNOWN_PROP_HTML)
           .join(`<br />${DIVIDER_HTML}<br />`)}</td>`
+      }
+      if ((fi + 1) % 3 === 0) {
+        html += `<td class="flex-divider"></td>`
       }
     })
 

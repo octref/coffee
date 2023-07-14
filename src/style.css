@@ -37,7 +37,7 @@
 }
 
 body {
-  min-width: 680px;
+  min-width: 720px;
   min-height: 100vh;
   display: flex;
   flex-flow: column nowrap;
@@ -70,7 +70,7 @@ main {
 .entry {
   display: flex;
   justify-content: flex-start;
-  gap: 0px 0.4rem;
+  gap: 2rem 0;
 
   border-bottom: 1px solid var(--text-color);
 
@@ -81,6 +81,10 @@ main {
 .entry > *:not(:last-child) {
   flex-basis: 10rem;
   flex-shrink: 0;
+}
+
+.entry .flex-divider {
+  display: none;
 }
 
 /* nav */
@@ -255,4 +259,27 @@ input[type='submit']:hover {
   color: var(--text-color);
   border-left: 1px solid var(--text-color);
   border-right: 1px solid var(--text-color);
+}
+
+@media (max-width: 720px) {
+  body {
+    min-width: auto;
+  }
+  main {
+    padding: 0 2px;
+  }
+  .entry {
+    flex-flow: row wrap;
+  }
+  .entry > :not(:last-child) {
+    flex-basis: 33%;
+  }
+  .entry > .notes {
+    flex-basis: 66%;
+  }
+  .entry .flex-divider {
+    display: block;
+    flex-basis: 100%;
+    border-top: 1px solid var(--text-fade-color);
+  }
 }
