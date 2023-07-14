@@ -4,7 +4,9 @@
     "build": "npx tsx scripts/build.ts"
   },
   "devDependencies": {
+    "@types/html-minifier-terser": "^7.0.0",
     "@types/node": "^20.4.1",
+    "html-minifier-terser": "^7.2.0",
     "tsx": "^3.12.7"
   }
 }

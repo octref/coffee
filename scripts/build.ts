@@ -6,8 +6,8 @@ import {
   readdirSync,
   writeFileSync
 } from 'fs'
-
 import { resolve } from 'path'
+import { minify } from 'html-minifier-terser'
 
 interface Coffee {
   roaster: string
@@ -21,29 +21,58 @@ interface Coffee {
   notes: string
 }
 
-// resolve a path like `./src/index.js` relative to root
-function resolveRootPath(p: string) {
-  return resolve(__dirname, '../', p)
+build()
+  .then(() => {
+    console.log('all done')
+  })
+  .catch((err) => {
+    console.error(err)
+    process.exit(1)
+  })
+
+async function build() {
+  const coffees: Coffee[] = JSON.parse(
+    readFileSync(resolveRootPath('./data/coffee.json'), 'utf-8')
+  )
+
+  const templateHTML = readFileSync(
+    resolveRootPath('./src/index.template.html'),
+    'utf-8'
+  )
+  const coffeeHTML = buildCoffeeHTML(coffees)
+  const cssSource = readFileSync(resolveRootPath('./src/style.css'), 'utf-8')
+  const jsSource = readFileSync(resolveRootPath('./src/index.js'))
+
+  const newHTML = templateHTML
+    .replace('<!-- coffee -->', coffeeHTML)
+    .replace(
+      '<link rel="stylesheet" href="./style.css" />',
+      `<style>${cssSource}</style>`
+    )
+    .replace(
+      '<script defer src="./index.js"></script>',
+      `<script defer>${jsSource}</script>`
+    )
+
+  const minifiedHTML = await minify(newHTML, {
+    collapseWhitespace: true,
+    removeComments: true,
+    minifyCSS: true,
+    minifyJS: true
+  })
+
+  ensureDirExists(resolveRootPath('./dist'))
+  writeFileSync(resolveRootPath('./dist/index.html'), minifiedHTML)
+
+  readdirSync(resolveRootPath('./static')).forEach((f) => {
+    copyFileSync(
+      resolveRootPath(`./static/${f}`),
+      resolveRootPath(`./dist/${f}`)
+    )
+  })
 }
 
-const coffees: Coffee[] = JSON.parse(
-  readFileSync(resolveRootPath('./data/coffee.json'), 'utf-8')
-)
-
-const html = buidlHTML(coffees)
-const sourceHTML = readFileSync(
-  resolveRootPath('./src/index.template.html'),
-  'utf-8'
-)
-const newHTML = sourceHTML.replace('<!-- coffee -->', html)
-ensureDirExists(resolveRootPath('./dist'))
-writeFileSync(resolveRootPath('./dist/index.html'), newHTML)
-
-readdirSync(resolveRootPath('./static')).forEach((f) => {
-  copyFileSync(resolveRootPath(`./static/${f}`), resolveRootPath(`./dist/${f}`))
-})
-
-function buidlHTML(coffees: Coffee[]) {
+function buildCoffeeHTML(coffees: Coffee[]) {
   sortCoffeeByDate(coffees)
 
   const fields = [
@@ -111,6 +140,11 @@ function buidlHTML(coffees: Coffee[]) {
       }
     })
   }
+}
+
+// resolve a path like `./src/index.js` relative to root
+function resolveRootPath(p: string) {
+  return resolve(__dirname, '../', p)
 }
 
 function ensureDirExists(dir: string) {
