@@ -88,7 +88,24 @@ main {
 
 .entry th,
 .entry td {
+  display: flex;
+  flex-flow: column nowrap;
+
   padding-right: 1rem;
+}
+.entry td a {
+  position: relative;
+}
+.entry td a span.link {
+  position: absolute;
+}
+.entry td a span svg {
+  padding-top: 1px;
+  transition: stroke 0.3s;
+  stroke: var(--text-fade-color);
+}
+.entry td a:hover span svg {
+  stroke: var(--text-color);
 }
 
 .entry > *:not(:last-child) {

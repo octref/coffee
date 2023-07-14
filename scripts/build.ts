@@ -9,7 +9,6 @@ import {
 import { resolve } from 'path'
 import { minify } from 'html-minifier-terser'
 import { Coffee } from './types'
-import { prettifyCoffeeJSON } from './prettify'
 
 build()
   .then(() => {
@@ -31,7 +30,7 @@ async function build() {
   )
   const coffeeHTML = buildCoffeeHTML(coffees)
   const cssSource = readFileSync(resolveRootPath('./src/style.css'), 'utf-8')
-  const jsSource = readFileSync(resolveRootPath('./src/index.js'))
+  const jsSource = readFileSync(resolveRootPath('./src/index.js'), 'utf-8')
 
   const newHTML = templateHTML
     .replace('<!-- coffee -->', coffeeHTML)
@@ -73,12 +72,25 @@ function buildCoffeeHTML(coffees: Coffee[]) {
 
   const DIVIDER_HTML = '<span class="divider">-</span>'
   const UNKNOWN_PROP_HTML = '<span class="unknown">/</span>'
+  const LINK_EXTERNAL_SVG = `<span class="link"><svg
+  fill="none"
+  height="24"
+  shape-rendering="geometricPrecision"
+  stroke="currentColor"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  stroke-width="1.5"
+  viewBox="0 0 24 24"
+  width="24"
+  style="color: currentcolor; width: 14px; height: 14px"
+>
+  <path d="M7 17L17 7"></path>
+  <path d="M7 7h10v10"></path>
+</svg></span>`
 
   let thsHTML = `<tr class="entry">`
   fields.forEach((f, fi) => {
-    thsHTML += `<th class="${f.join('-n-')}">${f.join(
-      `<br />${DIVIDER_HTML}<br />`
-    )}</th>`
+    thsHTML += `<th class="${f.join('-n-')}">${f.join(DIVIDER_HTML)}</th>`
 
     if ((fi + 1) % 3 === 0) {
       thsHTML += `<th class="flex-divider"></th>`
@@ -92,18 +104,18 @@ function buildCoffeeHTML(coffees: Coffee[]) {
     fields.forEach((f, fi) => {
       html += `<td class="${f.join('-n-')}">${f
         .map((p) => {
-          let propHTML = c[p]
+          let propHTML = `<span>${c[p]}</span>`
           if (!c[p]) {
             propHTML = UNKNOWN_PROP_HTML
           } else if (p === 'roaster' && c.roaster_link) {
-            propHTML = `<a href="${c.roaster_link}" target="_blank">${propHTML}</a>`
+            propHTML = `<a href="${c.roaster_link}" target="_blank">${propHTML}${LINK_EXTERNAL_SVG}</a>`
           } else if (p === 'coffee' && c.coffee_link) {
-            propHTML = `<a href="${c.coffee_link}" target="_blank">${propHTML}</a>`
+            propHTML = `<a href="${c.coffee_link}" target="_blank">${propHTML}${LINK_EXTERNAL_SVG}</a>`
           }
 
           return propHTML
         })
-        .join(`<br />${DIVIDER_HTML}<br />`)}</td>`
+        .join(DIVIDER_HTML)}</td>`
 
       if ((fi + 1) % 3 === 0) {
         html += `<td class="flex-divider"></td>`

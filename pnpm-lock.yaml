@@ -13,6 +13,9 @@ devDependencies:
   tsx:
     specifier: ^3.12.7
     version: 3.12.7
+  watch:
+    specifier: ^1.0.2
+    version: 1.0.2
 
 packages:
 
@@ -359,6 +362,12 @@ packages:
       '@esbuild/win32-x64': 0.17.19
     dev: true
 
+  /exec-sh@0.2.2:
+    resolution: {integrity: sha512-FIUCJz1RbuS0FKTdaAafAByGS0CPvU3R0MeHxgtl+djzCc//F8HakL8GzmVNZanasTbTAY/3DRFA0KpVqj/eAw==}
+    dependencies:
+      merge: 1.2.1
+    dev: true
+
   /fsevents@2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -391,6 +400,14 @@ packages:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
       tslib: 2.6.0
+    dev: true
+
+  /merge@1.2.1:
+    resolution: {integrity: sha512-VjFo4P5Whtj4vsLzsYBu5ayHhoHJ0UqNm7ibvShmbmoz7tGi0vXaoJbGdB+GmDMLUdg8DpQXEIeVDAe8MaABvQ==}
+    dev: true
+
+  /minimist@1.2.8:
+    resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: true
 
   /no-case@3.0.4:
@@ -459,4 +476,13 @@ packages:
       '@esbuild-kit/esm-loader': 2.5.5
     optionalDependencies:
       fsevents: 2.3.2
+    dev: true
+
+  /watch@1.0.2:
+    resolution: {integrity: sha512-1u+Z5n9Jc1E2c7qDO8SinPoZuHj7FgbgU1olSFoyaklduDvvtX7GMMtlE6OC9FTXq4KvNAOfj6Zu4vI1e9bAKA==}
+    engines: {node: '>=0.1.95'}
+    hasBin: true
+    dependencies:
+      exec-sh: 0.2.2
+      minimist: 1.2.8
     dev: true
