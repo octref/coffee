@@ -237,6 +237,9 @@ label {
 .input-container.flex-50 {
   flex-basis: 50%;
 }
+.input-container.flex-75 {
+  flex-basis: 75%;
+}
 .input-container.flex-100 {
   flex-basis: 100%;
 }

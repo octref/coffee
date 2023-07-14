@@ -59,7 +59,9 @@ function overrideFormSubmit() {
     const jsonData = {}
 
     for (const [key, value] of formData.entries()) {
-      jsonData[key] = value
+      if (value !== '') {
+        jsonData[key] = value
+      }
     }
 
     if (

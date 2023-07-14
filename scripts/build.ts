@@ -8,18 +8,8 @@ import {
 } from 'fs'
 import { resolve } from 'path'
 import { minify } from 'html-minifier-terser'
-
-interface Coffee {
-  roaster: string
-  coffee: string
-  region: string
-  altitude: string
-  varietal: string
-  roast: string
-  roasted: string
-  process: string
-  notes: string
-}
+import { Coffee } from './types'
+import { prettifyCoffeeJSON } from './prettify'
 
 build()
   .then(() => {
@@ -73,8 +63,6 @@ async function build() {
 }
 
 function buildCoffeeHTML(coffees: Coffee[]) {
-  sortCoffeeByDate(coffees)
-
   const fields = [
     ['roaster', 'coffee'],
     ['region', 'altitude', 'varietal'],
@@ -88,13 +76,10 @@ function buildCoffeeHTML(coffees: Coffee[]) {
 
   let thsHTML = `<tr class="entry">`
   fields.forEach((f, fi) => {
-    if (f.length === 1) {
-      thsHTML += `<th class="${f[0]}">${f[0]}</th>`
-    } else {
-      thsHTML += `<th class="${f.join('-n-')}">${f.join(
-        `<br />${DIVIDER_HTML}<br />`
-      )}</th>`
-    }
+    thsHTML += `<th class="${f.join('-n-')}">${f.join(
+      `<br />${DIVIDER_HTML}<br />`
+    )}</th>`
+
     if ((fi + 1) % 3 === 0) {
       thsHTML += `<th class="flex-divider"></th>`
     }
@@ -105,13 +90,21 @@ function buildCoffeeHTML(coffees: Coffee[]) {
     let html = '<tr class="entry">'
 
     fields.forEach((f, fi) => {
-      if (f.length === 1) {
-        html += `<td class="${f[0]}">${c[f[0]] || UNKNOWN_PROP_HTML}</td>`
-      } else {
-        html += `<td class="${f.join('-n-')}">${f
-          .map((p) => c[p] || UNKNOWN_PROP_HTML)
-          .join(`<br />${DIVIDER_HTML}<br />`)}</td>`
-      }
+      html += `<td class="${f.join('-n-')}">${f
+        .map((p) => {
+          let propHTML = c[p]
+          if (!c[p]) {
+            propHTML = UNKNOWN_PROP_HTML
+          } else if (p === 'roaster' && c.roaster_link) {
+            propHTML = `<a href="${c.roaster_link}" target="_blank">${propHTML}</a>`
+          } else if (p === 'coffee' && c.coffee_link) {
+            propHTML = `<a href="${c.coffee_link}" target="_blank">${propHTML}</a>`
+          }
+
+          return propHTML
+        })
+        .join(`<br />${DIVIDER_HTML}<br />`)}</td>`
+
       if ((fi + 1) % 3 === 0) {
         html += `<td class="flex-divider"></td>`
       }
@@ -125,27 +118,6 @@ function buildCoffeeHTML(coffees: Coffee[]) {
   return `<main><table id="coffees">${thsHTML}${entryHTMLs.join(
     ''
   )}</table></main>`
-
-  function sortCoffeeByDate(coffees: Coffee[]) {
-    return coffees.sort((c1, c2) => {
-      const d1 = new Date(c1.roasted)
-      const d2 = new Date(c2.roasted)
-
-      if (d1 > d2) {
-        return -1
-      } else if (d1 < d2) {
-        return 1
-      } else {
-        if (c1.coffee > c2.coffee) {
-          return -1
-        } else if (c1.coffee < c2.coffee) {
-          return 1
-        } else {
-          return 0
-        }
-      }
-    })
-  }
 }
 
 // resolve a path like `./src/index.js` relative to root

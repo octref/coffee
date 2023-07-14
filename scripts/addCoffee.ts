@@ -3,14 +3,16 @@
  */
 import { readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
+import { Coffee } from './types'
+import { prettifyCoffeeJSON } from './prettify'
 
 const COFFEE_PATH = resolve(__dirname, '../data/coffee.json')
 
 if (process.argv.length > 2) {
-  const payload = JSON.parse(process.argv[2])
+  const payload: Coffee = JSON.parse(process.argv[2])
 
-  const file: any[] = JSON.parse(readFileSync(COFFEE_PATH, 'utf8'))
-  file.unshift(payload)
+  const coffees: Coffee[] = JSON.parse(readFileSync(COFFEE_PATH, 'utf8'))
+  coffees.unshift(payload)
 
-  writeFileSync(COFFEE_PATH, JSON.stringify(file, null, 2))
+  writeFileSync(COFFEE_PATH, prettifyCoffeeJSON(coffees))
 }
