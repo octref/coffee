@@ -262,11 +262,11 @@ input[type='submit']:hover {
 }
 
 @media (max-width: 720px) {
+  :root {
+    --side-clear: 2px;
+  }
   body {
     min-width: auto;
-  }
-  main {
-    padding: 0 2px;
   }
   .entry {
     flex-flow: row wrap;
