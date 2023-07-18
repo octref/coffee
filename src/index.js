@@ -83,7 +83,9 @@ function overrideFormSubmit() {
         },
         body: JSON.stringify({
           event_type: 'add-coffee',
-          client_payload: jsonData
+          client_payload: {
+            coffee: jsonData
+          }
         })
       }
     )

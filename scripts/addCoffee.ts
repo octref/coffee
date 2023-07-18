@@ -9,10 +9,11 @@ import { prettifyCoffeeJSON } from './prettify'
 const COFFEE_PATH = resolve(__dirname, '../data/coffee.json')
 
 if (process.argv.length > 2) {
-  const payload: Coffee = JSON.parse(process.argv[2])
+  const payload: { coffee: Coffee } = JSON.parse(process.argv[2])
+  const { coffee } = payload
 
   const coffees: Coffee[] = JSON.parse(readFileSync(COFFEE_PATH, 'utf8'))
-  coffees.unshift(payload)
+  coffees.unshift(coffee)
 
   writeFileSync(COFFEE_PATH, prettifyCoffeeJSON(coffees))
 }
