@@ -4,6 +4,7 @@ const OWNER_ID = 'octref'
 go()
 
 async function go() {
+  alwaysShowFormOnFocus()
   overrideFormSubmit()
 
   const code = getParam(window.location.href, 'code')
@@ -48,6 +49,14 @@ async function go() {
       setLoggedIn()
     }
   }
+}
+
+function alwaysShowFormOnFocus() {
+  const $form = document.querySelector('#coffee-form')
+
+  $form.addEventListener('focusin', () => {
+    $form.dataset.state = 'inputing'
+  })
 }
 
 function overrideFormSubmit() {
@@ -115,6 +124,7 @@ function coffeeAdded() {
 function clearForm() {
   const $form = document.querySelector('#coffee-form')
   $form.reset()
+  $form.dataset.state = 'idle'
 }
 
 function getParam(url, param) {

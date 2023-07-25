@@ -205,6 +205,9 @@ nav {
 #coffee-form:has(input:focus) {
   display: flex;
 }
+#coffee-form[data-state='inputing'] {
+  display: flex;
+}
 
 /* coffee form */
 
