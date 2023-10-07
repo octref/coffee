@@ -96,9 +96,8 @@
     "varietal": "wush wush"
   },
   {
-    "altitude": "1800 - 2300 MASL",
+    "altitude": "1800 - 2300 masl",
     "coffee": "layo teraga",
-    "notes": " ",
     "process": "washed",
     "region": "guji uraga, ethiopia",
     "roast": "light",
@@ -108,15 +107,15 @@
     "varietal": "landrace"
   },
   {
-    "altitude": "rwanda",
+    "altitude": "1580 - 1850 masl",
     "coffee": "kigarama",
-    "notes": "red bourbon",
     "process": "washed",
-    "region": "remera",
+    "region": "remera, rwanda",
     "roast": "light",
     "roasted": "4/10/23",
     "roaster": "flower child",
-    "roaster_link": "https://flowerchildcoffee.com"
+    "roaster_link": "https://flowerchildcoffee.com",
+    "varietal": "red bourbon"
   },
   {
     "coffee": "donaciano martinez",
