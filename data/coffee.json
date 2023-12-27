@@ -1,5 +1,69 @@
 [
   {
+    "altitude": "2000 masl",
+    "coffee": "chelchele",
+    "coffee_link": "https://www.seycoffee.com/products/chelchele",
+    "notes": "peach candy, jasmine pearls, and cantaloupe",
+    "process": "hand-picked at peak ripeness. floated to further remove defects. de-pulped. grade 1 density separated. fermented underwater for 36 hours. dried on raised beds for 10-14 days.",
+    "region": "gedeb, yirgachefe",
+    "roast": "light",
+    "roasted": "11/13/23",
+    "roaster": "sey",
+    "roaster_link": "https://www.seycoffee.com",
+    "varietal": "ethiopian landrace"
+  },
+  {
+    "altitude": "1900 - 2210 masl",
+    "coffee": "halo hartume",
+    "coffee_link": "https://www.seycoffee.com/products/halo-hartume",
+    "notes": "light peach and tropical and hints of tart plum and other stone fruits",
+    "process": "hand-picked at peak ripeness. fermented underwater for 24-48 hours. dried on raised beds for 10-14 days.",
+    "region": "gedeb, yirgachefe",
+    "roast": "light",
+    "roasted": "10/16/23",
+    "roaster": "sey",
+    "roaster_link": "https://www.seycoffee.com",
+    "varietal": "ethiopian landrace"
+  },
+  {
+    "altitude": "1900 - 2210 masl",
+    "coffee": "halo hartume",
+    "coffee_link": "https://www.seycoffee.com/products/halo-hartume",
+    "notes": "light peach and tropical and hints of tart plum and other stone fruits",
+    "process": "hand-picked at peak ripeness. fermented underwater for 24-48 hours. dried on raised beds for 10-14 days.",
+    "region": "gedeb, yirgachefe",
+    "roast": "light",
+    "roasted": "9/18/23",
+    "roaster": "sey",
+    "roaster_link": "https://www.seycoffee.com",
+    "varietal": "ethiopian landrace"
+  },
+  {
+    "altitude": "1900 masl",
+    "coffee": "kore",
+    "notes": "white florals, tropical fruit, sparkling limeade acidity",
+    "process": "hand-picked at peak ripeness. floated to further remove defects. de-pulped on the day of harvest. wet fermented in tile tanks overnight. dried on raised beds.",
+    "region": "kochere, yirgacheffe",
+    "roast": "light",
+    "roasted": "09/12/23",
+    "roaster": "sey",
+    "roaster_link": "https://www.seycoffee.com",
+    "varietal": "ethiopian landrace"
+  },
+  {
+    "altitude": "2200 masl",
+    "coffee": "kubi",
+    "coffee_link": "https://www.seycoffee.com/collections/archived-coffees/products/kubi-2023",
+    "notes": "intoxicating florals, watermelon, peach, and a lively citrus acidity",
+    "process": "hand-picked at peak ripeness. floated to further remove defects. de-pulped. grade 1 density separated. fermented underwater for 36 hours. dried on raised beds for 10-14 days.",
+    "region": "gedeb, gedeo",
+    "roast": "light",
+    "roasted": "8/7/23",
+    "roaster": "sey",
+    "roaster_link": "https://www.seycoffee.com",
+    "varietal": "ethiopian landrace"
+  },
+  {
     "altitude": "1950 masl",
     "coffee": "wilmer galindez",
     "coffee_link": "https://www.seycoffee.com/products/wilmer-galindez-2023-main-crop",
@@ -37,13 +101,13 @@
     "altitude": "1900 masl",
     "coffee": "kore",
     "notes": "white florals, tropical fruit, sparkling limeade acidity",
-    "process": "washed",
-    "region": "ethiopian",
+    "process": "hand-picked at peak ripeness. floated to further remove defects. de-pulped on the day of harvest. wet fermented in tile tanks overnight. dried on raised beds.",
+    "region": "kochere, yirgacheffe",
     "roast": "light",
     "roasted": "06/19/23",
     "roaster": "sey",
     "roaster_link": "https://www.seycoffee.com",
-    "varietal": "landrace"
+    "varietal": "ethiopian landrace"
   },
   {
     "altitude": "1350 masl",
