@@ -1,5 +1,18 @@
 [
   {
+    "altitude": "1600 masl",
+    "coffee": "wilson alba",
+    "coffee_link": "https://www.seycoffee.com/products/2023-wilson-alba-sierra-morena-colombia",
+    "notes": "bright, crisp, and sweet, with a pointed lemonade-like acidity, excellent berry complexity and a floral transparency",
+    "process": "hand-picked at peak ripeness. floated. depulped. dry fermented for 24 hours. dried on raised beds for 30 days until moisture content reaches 10.3%.",
+    "region": "las Mercedes, palestina, huila, colombia",
+    "roast": "light",
+    "roasted": "1/15/24",
+    "roaster": "sey",
+    "roaster_link": "https://www.seycoffee.com",
+    "varietal": "pink bourbon"
+  },
+  {
     "coffee": "colombia finca bet-el",
     "notes": "raspberry, rhubarb, rose",
     "process": "anaerobic washed",
